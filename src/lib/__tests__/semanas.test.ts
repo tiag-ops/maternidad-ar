@@ -13,15 +13,17 @@ describe("dataset semana-a-semana", () => {
   });
   it("cada semana tiene contenido completo (nada vacío ni placeholder)", () => {
     for (const s of semanas) {
-      // Semanas 1-3: todavía no hay embrión medible — "—" es el valor correcto.
-      if (s.n >= 4) {
-        expect(s.tamano.length, `semana ${s.n} tamano`).toBeGreaterThan(2);
-      } else {
-        expect(s.tamano, `semana ${s.n} tamano pre-implantación`).toBe("—");
-        expect(s.medidaCm, `semana ${s.n} medida`).toBeNull();
-      }
       expect(s.desarrollo.length, `semana ${s.n} desarrollo`).toBeGreaterThan(60);
       expect(s.control.length, `semana ${s.n} control`).toBeGreaterThan(40);
+      // Invariante: semanas 1-3 (pre-implantación) no tienen medida ni comparativo
+      // de objeto; desde la 4, toda comparación lleva su medida en cm.
+      if (s.n >= 4) {
+        expect(s.tamano.length, `semana ${s.n} tamano`).toBeGreaterThan(2);
+        expect(s.medidaCm, `semana ${s.n} medida`).not.toBeNull();
+      } else {
+        expect(s.medidaCm, `semana ${s.n} medida`).toBeNull();
+        expect(s.tamano, `semana ${s.n} tamano`).toMatch(/^—|células/);
+      }
     }
   });
   it("la medida crece monótonamente (sin retrocesos)", () => {
