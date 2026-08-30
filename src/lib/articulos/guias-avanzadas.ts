@@ -1,7 +1,7 @@
 /** Guías avanzadas: derechos laborales, excedencia, estabilidad, prenatal, maternidad.
  * REGLA: ningún monto hardcodeado — todo sale de los datos oficiales via tablasVivas(). */
 
-import datos from "@/data/anses-2026-08.json";
+import datos from "@/data/anses.json";
 import { Guia } from "./tipos";
 
 interface Tramo {

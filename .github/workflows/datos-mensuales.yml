@@ -1,0 +1,52 @@
+name: Datos ANSES (mensual)
+
+# Corre el día 5 de cada mes a las 13:00 UTC (10:00 Argentina): da margen a que
+# ANSES publique la cartilla del mes. Solo toca src/data/anses.json y abre un PR.
+on:
+  schedule:
+    - cron: "0 13 5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch y actualización de montos
+        run: node scripts/fetch-anses.mjs
+      - name: ¿Hubo cambios?
+        id: diff
+        run: |
+          if git diff --quiet src/data; then
+            echo "changed=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=yes" >> "$GITHUB_OUTPUT"
+          fi
+      - name: PR automático con el diff
+        if: steps.diff.outputs.changed == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          MES=$(date +%Y-%m)
+          BRANCH="datos/anses-${MES}"
+          git config user.name "maternidad-bot"
+          git config user.email "tiagomusu@gmail.com"
+          git checkout -b "$BRANCH"
+          git add src/data
+          git commit -m "datos: montos ANSES ${MES} (movilidad mensual)"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "Montos ANSES ${MES}" \
+            --body "Actualización automática de montos por movilidad. Fuente: [página oficial de montos](https://www.anses.gob.ar/montos-de-asignacion-universal-por-hijo-y-por-embarazo-para-proteccion-social). Revisar que el aumento coincida con el publicado este mes. Al hacer merge, el deploy sale solo." \
+            --head "$BRANCH"
+          gh pr merge --auto --squash || true
+      - name: Sin cambios — salida silenciosa
+        if: steps.diff.outputs.changed == 'no'
+        run: echo "Los montos no cambiaron este mes. Nada que hacer."

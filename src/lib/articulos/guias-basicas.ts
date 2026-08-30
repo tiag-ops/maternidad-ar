@@ -1,7 +1,7 @@
 /** Guías básicas: licencia, AUE, nacimiento, paternidad.
  * REGLA: ningún monto hardcodeado — todo sale de los datos oficiales via tablasVivas(). */
 
-import datos from "@/data/anses-2026-08.json";
+import datos from "@/data/anses.json";
 import { Guia } from "./tipos";
 
 const d = datos as {

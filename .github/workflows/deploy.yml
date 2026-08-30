@@ -1,0 +1,36 @@
+name: Deploy a Cloudflare Pages
+
+# Deploy automático en cada push a main una vez configurado el secret
+# CLOUDFLARE_API_TOKEN en el repo (Settings → Secrets and variables → Actions).
+# Cierra el ciclo: merge del PR mensual de datos → deploy solo.
+# Si el secret no existe, este workflow se omite y queda el deploy manual con wrangler.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# `secrets` no está disponible en if de job: se expone vía env a nivel workflow.
+env:
+  CF_TOKEN_PRESENT: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+
+jobs:
+  deploy:
+    if: env.CF_TOKEN_PRESENT == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Gate (lint + tipos + tests + build)
+        run: |
+          npm run lint
+          npx tsc --noEmit
+          npm test
+          npm run build
+      - name: Wrangler deploy
+        run: npx wrangler pages deploy out --project-name=maternidad-ar --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -1,0 +1,50 @@
+name: LCT semestral (vigilante de la ley)
+
+# Chequea en febrero y agosto que el texto vigente del art. 177 siga siendo el
+# esperado (45+45 / opción 10+80 / 90 días). Si los marcadores desaparecen o
+# cambian, abre un issue (cambiar la ley requiere ajustar motor + contenido,
+# no es un reemplazo mecánico de JSON).
+on:
+  schedule:
+    - cron: "0 13 1 2 *"
+    - cron: "0 13 1 8 *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  vigilante:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Descargar texto oficial de la LCT
+        run: |
+          curl -sL --max-time 60 \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36" \
+            -o /tmp/lct.html \
+            "https://www.argentina.gob.ar/normativa/nacional/ley-20744-25552/actualizacion"
+          echo "bytes: $(wc -c < /tmp/lct.html)"
+      - name: Verificar marcadores del art. 177 vigente
+        id: marcadores
+        run: |
+          OK=1
+          grep -q "cuarenta y cinco (45) días anteriores" /tmp/lct.html || OK=0
+          grep -q "noventa (90) días" /tmp/lct.html || OK=0
+          grep -q "Art. 177" /tmp/lct.html || OK=0
+          echo "ok=$OK" >> "$GITHUB_OUTPUT"
+      - name: Abrir issue si la ley cambió
+        if: steps.marcadores.outputs.ok == '0'
+        run: |
+          gh issue create \
+            --title "LCT art. 177 cambió — actualizar motor de licencia" \
+            --body "El vigilante semestral no encontró los marcadores esperados en el texto oficial (45+45, opción 10 días, 90 días). Verificar en https://www.argentina.gob.ar/normativa/nacional/ley-20744-25552/actualizacion y: 1) actualizar src/lib/licencia.ts y sus tests, 2) actualizar src/lib/articulos (guías legales), 3) si hay proyecto de licencias parentales sancionado, activar la planificación de la calculadora parametrizada." \
+            --label "datos,critico" || \
+          gh issue create \
+            --title "LCT art. 177 cambió — actualizar motor de licencia" \
+            --body "Marcadores no encontrados. Ver https://www.argentina.gob.ar/normativa/nacional/ley-20744-25552/actualizacion"
+      - name: Sin cambios — salida silenciosa
+        if: steps.marcadores.outputs.ok == '1'
+        run: echo "Texto del art. 177 sin cambios. Nada que hacer."

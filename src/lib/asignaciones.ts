@@ -1,8 +1,9 @@
 /** Motor de asignaciones ANSES — funciones PURAS.
- * Los montos viven en src/data/anses-2026-08.json (fuente oficial, verificado 2026-08-29).
+ * Los montos viven en src/data/anses.json (fuente oficial, verificado 2026-08-29;
+ * actualizado mensualmente por scripts/fetch-anses.mjs vía GitHub Actions).
  * Regla de oro: si el dato no está en el JSON, no se muestra. */
 
-import datos from "@/data/anses-2026-08.json";
+import datos from "@/data/anses.json";
 import { diffDias } from "./fechas";
 
 export interface MontoPartes {
