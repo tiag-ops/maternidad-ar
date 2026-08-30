@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { calculadoras } from "@/lib/calculadoras";
 import { todasLasGuias } from "@/lib/articulos";
+import { todasLasSemanas } from "@/lib/semanas";
 
 export const dynamic = "force-static";
 
@@ -21,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const semanas = todasLasSemanas().map((s) => ({
+    url: `${BASE}/semana/${s.n}/`,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const legales = ["/privacidad/", "/terminos/", "/quienes-somos/"].map((p) => ({
     url: `${BASE}${p}`,
     changeFrequency: "yearly" as const,
@@ -32,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...calcs,
     ...indiceGuias,
     ...guias,
+    ...semanas,
     ...legales,
   ];
 }
