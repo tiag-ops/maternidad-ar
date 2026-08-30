@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { calculadoras } from "@/lib/calculadoras";
+import { todasLasGuias } from "@/lib/articulos";
 
 export const dynamic = "force-static";
 
@@ -12,11 +13,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  const indiceGuias = [{ url: `${BASE}/guia/`, changeFrequency: "weekly" as const, priority: 0.8 }];
+
+  const guias = todasLasGuias().map((g) => ({
+    url: `${BASE}/guia/${g.slug}/`,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const legales = ["/privacidad/", "/terminos/", "/quienes-somos/"].map((p) => ({
     url: `${BASE}${p}`,
     changeFrequency: "yearly" as const,
     priority: 0.3,
   }));
 
-  return [{ url: `${BASE}/`, changeFrequency: "weekly" as const, priority: 1 }, ...calcs, ...legales];
+  return [
+    { url: `${BASE}/`, changeFrequency: "weekly" as const, priority: 1 },
+    ...calcs,
+    ...indiceGuias,
+    ...guias,
+    ...legales,
+  ];
 }

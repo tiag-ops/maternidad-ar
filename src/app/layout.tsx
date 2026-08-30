@@ -45,6 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/asignacion-por-embarazo/" className="hover:text-rose-700 dark:hover:text-rose-300">
                   Asignaciones
                 </Link>
+                <Link href="/guia/" className="hover:text-rose-700 dark:hover:text-rose-300">
+                  Guías
+                </Link>
               </nav>
               <ThemeToggle />
             </div>
