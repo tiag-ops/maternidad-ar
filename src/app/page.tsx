@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/link";
 import { calculadoras, CATEGORIAS } from "@/lib/calculadoras";
 import { fuenteDatos, montoAue } from "@/lib/asignaciones";
 import { fechaLarga } from "@/lib/fechas";

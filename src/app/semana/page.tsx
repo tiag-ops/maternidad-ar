@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/link";
 import { todasLasSemanas, trimestreDeSemana, TOTAL_SEMANAS } from "@/lib/semanas";
 
 export const metadata: Metadata = {
