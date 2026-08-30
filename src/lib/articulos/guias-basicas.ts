@@ -91,6 +91,7 @@ export function guiasBasicas(): Guia[] {
       relacionadas: [
         { titulo: "Calculadora de licencia", href: "/licencia-por-maternidad/" },
         { titulo: "Excedencia: cómo funciona", href: "/guia/excedencia-como-funciona/" },
+        { titulo: "Embarazo semana a semana", href: "/semana/" },
       ],
     },
     {

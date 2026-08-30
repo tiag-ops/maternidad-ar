@@ -3,7 +3,8 @@ import { guiasBasicas } from "./guias-basicas";
 import { guiasAvanzadas } from "./guias-avanzadas";
 import { guiasProyecto } from "./guias-proyecto";
 
-/** Índice de todas las guías (el sitemap y el índice /guia/ salen de acá). */
+/** Índice de todas las guías (el sitemap y el índice /guia/ salen de acá).
+ * relacionadas puede enlazar calculadoras, guías o el hub de semanas. */
 export function todasLasGuias(): Guia[] {
   return [...guiasBasicas(), ...guiasAvanzadas(), ...guiasProyecto()];
 }

@@ -188,6 +188,19 @@ export default function CalculadoraEmbarazoCliente() {
             </p>
           </div>
 
+          <div className="card mb-4">
+            <h2 className="mb-2 text-lg font-semibold">Tu semana ahora mismo</h2>
+            <p className="mb-3 leading-relaxed text-neutral-700 dark:text-neutral-300">
+              Mirá qué pasa esta semana con tu bebé y qué control te toca.
+            </p>
+            <Link
+              href={`/semana/${resultado.semanas}/`}
+              className="btn"
+            >
+              Ver la semana {resultado.semanas} →
+            </Link>
+          </div>
+
           {hitos.length > 0 && (
             <div className="card mb-4">
               <h2 className="mb-3 text-lg font-semibold">Hitos que vienen</h2>
@@ -234,6 +247,11 @@ export default function CalculadoraEmbarazoCliente() {
         <p className="caption">
           Fuente: regla de Naegele, utilizada por la obstetricia desde hace más de 180 años. El
           control prenatal argentino sigue las recomendaciones del Ministerio de Salud.
+        </p>
+        <p className="mt-3">
+          <Link href="/semana/" className="acento underline">
+            Ver qué pasa en cada semana del embarazo (1 a 40) →
+          </Link>
         </p>
       </section>
     </div>

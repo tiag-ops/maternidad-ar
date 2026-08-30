@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const indiceGuias = [{ url: `${BASE}/guia/`, changeFrequency: "weekly" as const, priority: 0.8 }];
+  const indiceSemanas = [{ url: `${BASE}/semana/`, changeFrequency: "weekly" as const, priority: 0.8 }];
 
   const guias = todasLasGuias().map((g) => ({
     url: `${BASE}/guia/${g.slug}/`,
@@ -38,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/`, changeFrequency: "weekly" as const, priority: 1 },
     ...calcs,
     ...indiceGuias,
+    ...indiceSemanas,
     ...guias,
     ...semanas,
     ...legales,

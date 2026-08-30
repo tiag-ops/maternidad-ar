@@ -43,6 +43,26 @@ export default function Home() {
         ))}
       </section>
 
+      <section aria-label="Seguimiento semana a semana" className="mb-10">
+        <div className="mb-3 flex items-baseline justify-between">
+          <h2 className="text-xl font-semibold">Tu embarazo semana a semana</h2>
+          <Link href="/semana/" className="acento caption underline">
+            Ver las 40 semanas
+          </Link>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {[4, 8, 12, 16, 20, 24, 28, 32, 36, 40].map((n) => (
+            <Link
+              key={n}
+              href={`/semana/${n}/`}
+              className="rounded-lg border border-neutral-200 px-3 py-1.5 tabular-nums transition-colors hover:border-rose-400 dark:border-neutral-800 dark:hover:border-rose-700"
+            >
+              Semana {n}
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="verdict mb-10">
         <h2 className="mb-2 text-lg font-semibold">Datos con vigencia, no números viejos</h2>
         <p className="leading-relaxed">

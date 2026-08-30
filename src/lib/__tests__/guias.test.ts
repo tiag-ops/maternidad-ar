@@ -28,9 +28,12 @@ describe("estructura mínima de cada guía", () => {
     expect(g.bloques.length).toBeGreaterThanOrEqual(3);
     expect(g.faqs.length).toBeGreaterThanOrEqual(2);
     expect(g.relacionadas.length).toBeGreaterThanOrEqual(1);
-    // toda CTA apunta a una ruta interna que existe
+    // toda CTA apunta a una ruta interna que existe (calculadora, guía o hub de semanas)
     for (const b of g.bloques) {
       if (b.tipo === "calc") expect(b.href).toMatch(/^\/(guia\/)?[a-z0-9-]+\/$/);
+    }
+    for (const r of g.relacionadas) {
+      expect(r.href).toMatch(/^\/(guia\/[a-z0-9-]+|semana\/?|[a-z0-9-]+)\/$/);
     }
   });
 });

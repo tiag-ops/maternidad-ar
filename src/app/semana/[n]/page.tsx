@@ -9,6 +9,23 @@ import {
   TOTAL_SEMANAS,
 } from "@/lib/semanas";
 
+/** Guías relevantes según el trimestre — interlinking contextual. */
+const GUIAS_POR_TRIMESTRE: Record<1 | 2 | 3, { titulo: string; href: string }[]> = {
+  1: [
+    { titulo: "AUE: requisitos y cuánto pagan", href: "/guia/asignacion-universal-por-embarazo-requisitos/" },
+    { titulo: "Embarazo y trabajo: tus derechos", href: "/guia/embarazo-y-trabajo-derechos/" },
+  ],
+  2: [
+    { titulo: "Asignación prenatal: tramos y montos", href: "/guia/prenatal-tramos-igf-cuanto-cobra/" },
+    { titulo: "Licencia por nacimiento para el padre", href: "/guia/licencia-por-nacimiento-para-el-padre/" },
+  ],
+  3: [
+    { titulo: "Licencia por maternidad: cuántos días", href: "/guia/licencia-por-maternidad-cuantos-dias/" },
+    { titulo: "Excedencia: cómo funciona", href: "/guia/excedencia-como-funciona/" },
+    { titulo: "Tu sueldo durante la licencia", href: "/guia/asignacion-por-maternidad-sueldo-licencia/" },
+  ],
+};
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -121,6 +138,18 @@ export default async function Page({ params }: { params: Promise<{ n: string }> 
           Calculá tu embarazo →
         </Link>
       </section>
+
+      <nav aria-label="Guías relacionadas" className="flex flex-wrap gap-3">
+        {GUIAS_POR_TRIMESTRE[trimestre].map((g) => (
+          <Link
+            key={g.href}
+            href={g.href}
+            className="rounded-lg border border-neutral-200 px-4 py-2 hover:border-rose-400 dark:border-neutral-800"
+          >
+            {g.titulo} →
+          </Link>
+        ))}
+      </nav>
 
       <nav className="flex items-center justify-between gap-4" aria-label="Navegación entre semanas">
         {anterior ? (

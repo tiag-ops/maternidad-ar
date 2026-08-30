@@ -48,6 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/guia/" className="hover:text-rose-700 dark:hover:text-rose-300">
                   Guías
                 </Link>
+                <Link href="/semana/" className="hover:text-rose-700 dark:hover:text-rose-300">
+                  Semanas
+                </Link>
               </nav>
               <ThemeToggle />
             </div>
@@ -64,6 +67,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <Link href="/terminos/" className="hover:text-rose-700 dark:hover:text-rose-300">
               Términos
+            </Link>
+            <Link href="/guia/" className="hover:text-rose-700 dark:hover:text-rose-300">
+              Guías
+            </Link>
+            <Link href="/semana/" className="hover:text-rose-700 dark:hover:text-rose-300">
+              Semana a semana
             </Link>
           </p>
           <p className="caption mx-auto max-w-2xl px-4">

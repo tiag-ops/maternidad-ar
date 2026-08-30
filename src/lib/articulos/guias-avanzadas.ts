@@ -100,6 +100,7 @@ export function guiasAvanzadas(): Guia[] {
       relacionadas: [
         { titulo: "Estabilidad laboral detallada", href: "/guia/estabilidad-laboral-embarazada/" },
         { titulo: "Excedencia", href: "/guia/excedencia-como-funciona/" },
+        { titulo: "Embarazo semana a semana", href: "/semana/" },
       ],
     },
     {
