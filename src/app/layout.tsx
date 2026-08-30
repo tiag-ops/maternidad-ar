@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/components/link";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import ThemeToggle from "./theme-toggle";
+import NavMobile from "./nav-mobile";
 import { themeScript } from "./theme-script";
 import "./globals.css";
 
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               </nav>
               <ThemeToggle />
+              <NavMobile />
             </div>
           </div>
         </header>
