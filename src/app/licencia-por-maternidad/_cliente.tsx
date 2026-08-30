@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "@/components/link";
+import Link from "next/link";
 import {
   calcularLicencia,
   type Licencia,

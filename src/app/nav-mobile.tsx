@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "@/components/link";
+import Link from "next/link";
 
 const LINKS = [
   { href: "/calculadora-de-embarazo/", texto: "Embarazo" },

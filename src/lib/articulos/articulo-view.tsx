@@ -1,4 +1,4 @@
-import Link from "@/components/link";
+import Link from "next/link";
 import { Bloque, Guia } from "./tipos";
 
 /** Renderiza un bloque de guía. Los datos de las tablas ya vienen vivos del data layer. */

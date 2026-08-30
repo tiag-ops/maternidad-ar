@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "@/components/link";
+import Link from "next/link";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import ThemeToggle from "./theme-toggle";
 import NavMobile from "./nav-mobile";
