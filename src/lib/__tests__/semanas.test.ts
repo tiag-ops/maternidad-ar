@@ -13,7 +13,13 @@ describe("dataset semana-a-semana", () => {
   });
   it("cada semana tiene contenido completo (nada vacío ni placeholder)", () => {
     for (const s of semanas) {
-      expect(s.tamano.length, `semana ${s.n} tamano`).toBeGreaterThan(2);
+      // Semanas 1-3: todavía no hay embrión medible — "—" es el valor correcto.
+      if (s.n >= 4) {
+        expect(s.tamano.length, `semana ${s.n} tamano`).toBeGreaterThan(2);
+      } else {
+        expect(s.tamano, `semana ${s.n} tamano pre-implantación`).toBe("—");
+        expect(s.medidaCm, `semana ${s.n} medida`).toBeNull();
+      }
       expect(s.desarrollo.length, `semana ${s.n} desarrollo`).toBeGreaterThan(60);
       expect(s.control.length, `semana ${s.n} control`).toBeGreaterThan(40);
     }
