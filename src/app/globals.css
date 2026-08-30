@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Tokens de fuente: font-sans (UI) y font-editorial (headings) via next/font */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-serif-editorial), Georgia, "Times New Roman", serif;
+}
+
+/* Modo claro/oscuro por clase en <html> (toggle + script anti-flash) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  /* Base 18px: escala todo el sitio vía rem — párrafos nunca menores a 16-17px */
+  font-size: 112.5%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-neutral-50 font-sans text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100;
+}
+
+/* Serif editorial para headings — cálida, salud/bebé */
+h1,
+h2,
+h3 {
+  @apply font-editorial;
+}
+
+.card {
+  @apply rounded-xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900;
+}
+
+.input {
+  @apply w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/30 dark:border-neutral-700 dark:bg-neutral-800;
+}
+
+label {
+  @apply block text-[13px] font-medium text-neutral-600 dark:text-neutral-400;
+}
+
+/* Botón primario rose: white sobre rose-700 = 6.29:1 (AA), hover rose-800 = 8.02:1 */
+.btn {
+  @apply inline-block rounded-lg bg-rose-700 px-4 py-2 font-medium text-white transition-colors hover:bg-rose-800;
+}
+
+/* Acento/link: rose-700 claro (6.29:1), rose-300 en oscuro (sobre 950 ≈ 10:1) */
+.acento {
+  @apply text-rose-700 dark:text-rose-300;
+}
+
+/* Caption: NUNCA neutral-500 (falla AA en oscuro). 13px mínimo. */
+.caption {
+  @apply text-[13px] text-neutral-600 dark:text-neutral-400;
+}
+
+/* Badge trimestre: violet-700 sobre violet-50 = 6.48:1; dark violet-200/violet-950 = 10.97:1 */
+.badge-trimestre {
+  @apply rounded-full bg-violet-50 px-3 py-1 text-[13px] font-semibold text-violet-700 dark:bg-violet-950 dark:text-violet-200;
+}
+
+/* Bloque de resultado principal: rose-700 sobre rose-50 = 5.72:1; dark rose-200/rose-950 = 11.08:1 */
+.verdict {
+  @apply rounded-xl border border-rose-200 bg-rose-50 p-5 dark:border-rose-900 dark:bg-rose-950/60;
+}
+
+/* Warning: amber-800 sobre amber-50 = 6.84:1; dark amber-200/amber-950 = 12.03:1 */
+.warning {
+  @apply rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-800 dark:border-amber-900 dark:bg-amber-950/60 dark:text-amber-200;
+}
+
+/* Focus visible para teclado (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  @apply outline-none ring-2 ring-rose-500/60 ring-offset-2 ring-offset-neutral-50 dark:ring-offset-neutral-950;
+}
+
+/* Números de resultado: tabulares y grandes */
+.numero-resultado {
+  @apply font-editorial text-5xl font-semibold tabular-nums sm:text-6xl;
+}

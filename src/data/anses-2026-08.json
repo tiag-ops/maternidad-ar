@@ -1,0 +1,76 @@
+{
+  "vigenciaDesde": "2026-08-01",
+  "actualizadoEl": "2026-08-29",
+  "fuente": "ANSES",
+  "urlFuente": "https://www.anses.gob.ar/cartilla/montos-asignaciones-familiares",
+  "urlFuenteUniversal": "https://www.anses.gob.ar/montos-de-asignacion-universal-por-hijo-y-por-embarazo-para-proteccion-social",
+  "aumento": { "porcentaje": 1.89, "mes": "agosto 2026" },
+  "aue": {
+    "nombre": "Asignación por Embarazo para Protección Social",
+    "pagoMensual80": 120678.4,
+    "complemento20": 30169.6,
+    "totalMes": 150848.0,
+    "zonaAustral": { "pagoMensual80": 156882.4, "complemento20": 39220.6, "totalMes": 196103.0 }
+  },
+  "auh": {
+    "nombre": "Asignación Universal por Hijo",
+    "pagoMensual80": 120678.4,
+    "complemento20": 30169.6,
+    "totalMes": 150848.0,
+    "zonaAustral": { "pagoMensual80": 156882.4, "complemento20": 39220.6, "totalMes": 196103.0 },
+    "conDiscapacidad": {
+      "pagoMensual80": 392938.4,
+      "complemento20": 98234.6,
+      "totalMes": 491173.0,
+      "zonaAustral": { "pagoMensual80": 510820.0, "complemento20": 127705.0, "totalMes": 638525.0 }
+    }
+  },
+  "nacimiento": {
+    "nombre": "Asignación por Nacimiento (pago único)",
+    "monto": 87926,
+    "condicion": "IGF hasta $6.184.406"
+  },
+  "adopcion": {
+    "nombre": "Asignación por Adopción (pago único)",
+    "monto": 525682,
+    "condicion": "IGF hasta $6.184.406"
+  },
+  "prenatal": {
+    "nombre": "Asignación por Prenatal (trabajadora en relación de dependencia o monotributo)",
+    "tramos": [
+      {
+        "rango": "IGF hasta $1.167.863",
+        "hasta": 1167863,
+        "desde": 0,
+        "valores": { "general": 75433, "zona1": 75433, "zona2": 162648, "zona3": 150647, "zona4": 162648 }
+      },
+      {
+        "rango": "IGF entre $1.167.863,01 y $1.712.784",
+        "desde": 1167863.01,
+        "hasta": 1712784,
+        "valores": { "general": 50884, "zona1": 67201, "zona2": 100656, "zona3": 133851, "zona4": 133851 }
+      },
+      {
+        "rango": "IGF entre $1.712.784,01 y $1.977.464",
+        "desde": 1712784.01,
+        "hasta": 1977464,
+        "valores": { "general": 30777, "zona1": 60571, "zona2": 90891, "zona3": 120957, "zona4": 120957 }
+      },
+      {
+        "rango": "IGF entre $1.977.464,01 y $6.184.406",
+        "desde": 1977464.01,
+        "hasta": 6184406,
+        "valores": { "general": 15881, "zona1": 31048, "zona2": 46463, "zona3": 61478, "zona4": 61478 }
+      }
+    ]
+  },
+  "maternidad": {
+    "nombre": "Asignación por Maternidad (100% del sueldo durante la licencia, ANSES paga)",
+    "condicion": "Sin tope de IGF — se cobra por la licencia (90 días)"
+  },
+  "topes": {
+    "igfMaximo": 6184406,
+    "integranteMaximo": 3092203,
+    "nota": "Si algún integrante del grupo familiar supera $3.092.203 brutos, se excluye al grupo del cobro de asignaciones familiares."
+  }
+}
