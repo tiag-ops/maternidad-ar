@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description:
     "Calculadoras de embarazo, licencia por maternidad y asignaciones de ANSES con montos oficiales vigentes, fuente citada y lenguaje claro. Gratis, sin registro.",
   metadataBase: new URL("https://maternidad-ar.pages.dev"),
+  verification: {
+    google: "i7sK2VBotuv8SZLp2OhuSL7t3P4xekIhKxsHTPv82L4",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
