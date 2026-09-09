@@ -76,6 +76,20 @@ export default function Page() {
           </a>{" "}
           y tu médico o asesora de confianza.
         </p>
+        <p>
+          Maternidad.ar es parte de una red chica de calculadoras gratuitas del mismo autor. Si
+          además estás organizando el dinero de la familia, conocé{" "}
+          <a
+            href="https://reditos.com.ar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="acento underline"
+          >
+            Redito.ar
+          </a>
+          , calculadoras de plazo fijo, interés compuesto e inflación con datos oficiales del BCRA
+          e INDEC.
+        </p>
       </div>
     </div>
   );
